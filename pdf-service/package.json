@@ -1,0 +1,21 @@
+{
+  "name": "pdf-service",
+  "version": "1.0.0",
+  "main": "handler.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "aws-sdk": "^2.1623.0",
+    "moment-timezone": "^0.5.45",
+    "pdf-lib": "^1.17.1",
+    "serverless": "^3.38.0"
+  },
+  "devDependencies": {
+    "serverless-offline": "^13.5.1"
+  }
+}

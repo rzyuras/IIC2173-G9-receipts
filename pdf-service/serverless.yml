@@ -1,0 +1,24 @@
+service: pdf-service  # Nombre del servicio
+
+provider:
+  name: aws  # Proveedor de nube
+  runtime: nodejs18.x  # Versión del entorno de ejecución de Node.js
+  region: us-east-2  # Región de AWS
+  iamRoleStatements:  # Declaraciones de permisos IAM
+    - Effect: "Allow"
+      Action:
+        - "s3:PutObject"
+        - "s3:GetObject"
+      Resource: "arn:aws:s3:::boletas-flightsapp-grupo9/*"
+
+functions:
+  generatePDF:  # Nombre de la función Lambda
+    handler: handler.generatePDF  # Archivo y método que maneja la función
+    events:  # Eventos que disparan la función
+      - http:
+          path: generate-pdf  # Ruta del endpoint en API Gateway
+          method: post  # Método HTTP
+          cors: true  # Habilitar CORS
+
+plugins:
+  - serverless-offline  # Plugin para simular AWS Lambda y API Gateway localmente
