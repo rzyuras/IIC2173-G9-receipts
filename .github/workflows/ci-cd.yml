@@ -19,20 +19,26 @@ jobs:
       with:
         node-version: '16'
         cache: 'npm'
-        cache-dependency-path: package-lock.json
+
+    - name: Clean npm cache
+      run: npm cache clean --force
+      working-directory: boletas/pdf-service
 
     - name: Install dependencies
       run: npm install
+      working-directory: boletas/pdf-service
 
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: us-east-2
+        aws-region: us-west-2
 
     - name: Package service
       run: npx serverless package
+      working-directory: boletas/pdf-service
 
     - name: Deploy service
       run: npx serverless deploy
+      working-directory: boletas/pdf-service
