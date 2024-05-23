@@ -19,6 +19,7 @@ jobs:
       with:
         node-version: '16'
         cache: 'npm'
+        cache-dependency-path: pdf-service/package-lock.json
 
     - name: Clean npm cache
       run: npm cache clean --force
@@ -38,6 +39,11 @@ jobs:
     - name: Package service
       run: npx serverless package
       working-directory: pdf-service
+
+    - name: Deploy service
+      run: npx serverless deploy
+      working-directory: pdf-service
+
 
     - name: Deploy service
       run: npx serverless deploy
